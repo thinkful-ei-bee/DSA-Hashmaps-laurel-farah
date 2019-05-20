@@ -72,29 +72,10 @@ class HashMap {
         }
     }
 }
-HashMap.MAX_LOAD_RATIO = 0.5;
+HashMap.MAX_LOAD_RATIO = 1;
 HashMap.SIZE_RATIO = 3;
 
 module.exports = HashMap;
-
-function main() {
-    let lor = new HashMap();
-    lor.set("Hobbit", "Bilbo");
-    lor.set("Hobbit", "Frodo");
-    lor.set("Wizard", "Gandolf");
-    lor.set("Human", "Aragon");
-    lor.set("Elf", "Legolas");
-    lor.set("Maiar", "The Necromancer");
-    lor.set("Maiar", "Sauron");
-    lor.set("RingBearer", "Gollum");
-    lor.set("LadyOfLight", "Galadriel");
-    lor.set("HalfElven", "Arwen");
-    lor.set("Ent", "Treebeard");
-    // console.log(lor._findSlot("Maiar")); //0
-    // console.log(lor._findSlot("Hobbit")); //5
-    // console.log(lor); //capacity 8
-}
-main();
 
 const WhatDoesThisDo = function () {
     let str1 = 'Hello World.';
@@ -127,11 +108,41 @@ WhatDoesThisDo();
 
 //  length m = 9 keys: 5, 28, 19, 15, 20, 33, 12, 17, 10
 
+
 // Remove duplicates
 function deleteDuplicates(string) {
     const characters = new HashMap();
-    for( let i = string.length - 1; i > 0; i--) {
-        characters.set(string[i])
+    for( let i = string.length - 1; i >= 0; i--) {
+        characters.set(string[i], i);
     }
     let results = '';
+
+    for (let i = 0; i < string.length; i++) {
+        if ( i === characters.get(string[i])){
+            results += string[i];
+        }
+    }
+
+    return results;
 }
+
+function main() {
+    let lor = new HashMap();
+    // lor.set("Hobbit", "Bilbo");
+    // lor.set("Hobbit", "Frodo");
+    // lor.set("Wizard", "Gandolf");
+    // lor.set("Human", "Aragon");
+    // lor.set("Elf", "Legolas");
+    // lor.set("Maiar", "The Necromancer");
+    // lor.set("Maiar", "Sauron");
+    // lor.set("RingBearer", "Gollum");
+    // lor.set("LadyOfLight", "Galadriel");
+    // lor.set("HalfElven", "Arwen");
+    // lor.set("Ent", "Treebeard");
+    // console.log(lor._findSlot("Maiar")); //0
+    // console.log(lor._findSlot("Hobbit")); //5
+    // console.log(lor); //capacity 8
+
+    console.log(deleteDuplicates("google"))
+}
+main();
