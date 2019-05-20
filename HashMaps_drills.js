@@ -84,17 +84,18 @@ function main() {
     lor.set("Wizard", "Gandolf");
     lor.set("Human", "Aragon");
     lor.set("Elf", "Legolas");
-    // lor.set("Maiar", "The Necromancer");
-    // lor.set("Maiar", "Sauron");
-    // lor.set("RingBearer", "Gollum");
-    // lor.set("LadyOfLight", "Galadriel");
-    // lor.set("HalfElven", "Arwen");
-    // lor.set("Ent", "Treebeard");
-    console.log(lor._findSlot("Maiar")); //0
-    console.log(lor._findSlot("Hobbit")); //5
-    console.log(lor); //capacity 8
+    lor.set("Maiar", "The Necromancer");
+    lor.set("Maiar", "Sauron");
+    lor.set("RingBearer", "Gollum");
+    lor.set("LadyOfLight", "Galadriel");
+    lor.set("HalfElven", "Arwen");
+    lor.set("Ent", "Treebeard");
+    // console.log(lor._findSlot("Maiar")); //0
+    // console.log(lor._findSlot("Hobbit")); //5
+    // console.log(lor); //capacity 8
 }
-// main();
+main();
+
 const WhatDoesThisDo = function () {
     let str1 = 'Hello World.';
     let str2 = 'Hello World.';
@@ -107,11 +108,30 @@ const WhatDoesThisDo = function () {
     map2.set(str3, 20);
     map2.set(str4, 10);
 
-    console.log(map1.get(str1));
-    console.log(map2.get(str3));
+    // console.log(map1.get(str1));
+    // console.log(map2.get(str3));
 }
 WhatDoesThisDo();
-
 // map1 will display 20 because the value was overwritten by: map2.set(str3,20);
 // map2 will display 10 because the value was overwritten by: map2.set(str4,10);
 
+
+// Demonstrate understanding of Hash maps: Drill 3
+
+// length m = 11 keys: 10, 22, 31, 4, 15, 28, 17, 88, 59
+// we only have 9 values and we need to find the next available slot (open addressing)
+// HashMap: [10, 22, 31, _, 4, 15, 28, 17, 88, _, 59]
+// function hashMap (num) {
+    //return num % hashTable.length;
+//}
+
+//  length m = 9 keys: 5, 28, 19, 15, 20, 33, 12, 17, 10
+
+// Remove duplicates
+function deleteDuplicates(string) {
+    const characters = new HashMap();
+    for( let i = string.length - 1; i > 0; i--) {
+        characters.set(string[i])
+    }
+    let results = '';
+}
