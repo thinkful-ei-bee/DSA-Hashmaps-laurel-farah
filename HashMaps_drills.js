@@ -92,12 +92,13 @@ const WhatDoesThisDo = function () {
     // console.log(map1.get(str1));
     // console.log(map2.get(str3));
 }
+// 3. What does this do
 WhatDoesThisDo();
 // map1 will display 20 because the value was overwritten by: map2.set(str3,20);
 // map2 will display 10 because the value was overwritten by: map2.set(str4,10);
 
 
-// Demonstrate understanding of Hash maps: Drill 3
+// 4. Demonstrate understanding of Hash maps: Drill 3
 
 // length m = 11 keys: 10, 22, 31, 4, 15, 28, 17, 88, 59
 // we only have 9 values and we need to find the next available slot (open addressing)
@@ -109,7 +110,7 @@ WhatDoesThisDo();
 //  length m = 9 keys: 5, 28, 19, 15, 20, 33, 12, 17, 10
 
 
-// Remove duplicates
+// 4. Remove duplicates
 function deleteDuplicates(string) {
     const characters = new HashMap();
     for( let i = string.length - 1; i >= 0; i--) {
@@ -125,6 +126,13 @@ function deleteDuplicates(string) {
 
     return results;
 }
+
+// 5. Any permutation a palindrome 
+function Palindrome(string) {
+    const checkPalindrome = new HashMap();
+  
+
+  }
 
 function main() {
     let lor = new HashMap();
