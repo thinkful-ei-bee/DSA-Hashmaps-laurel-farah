@@ -5,6 +5,13 @@ class HashMap {
         this._capacity = initialCapacity;
         this._deleted = 0;
     }
+    get(key) {
+        const index = this._findSlot(key);
+        if (this._hashTable[index] === undefined) {
+            throw new Error('Key error');
+        }
+        return this._hashTable[index].value;
+    }
     static _hashString(string) {
         let hash = 5381;
         for (let i = 0; i < string.length; i++) {
@@ -68,34 +75,43 @@ class HashMap {
 HashMap.MAX_LOAD_RATIO = 0.5;
 HashMap.SIZE_RATIO = 3;
 
+module.exports = HashMap;
+
 function main() {
-    let lor = new HashMap;
-    HashMap.MAX_LOAD_RATIO = 0.5;
-    lor.SIZE_RATIO = 3;
+    let lor = new HashMap();
     lor.set("Hobbit", "Bilbo");
     lor.set("Hobbit", "Frodo");
     lor.set("Wizard", "Gandolf");
     lor.set("Human", "Aragon");
     lor.set("Elf", "Legolas");
-    lor.set("Maiar", "The Necromancer");
-    lor.set("Maiar", "Sauron");
-    lor.set("RingBearer", "Gollum");
-    lor.set("LadyOfLight", "Galadriel");
-    lor.set("HalfElven", "Arwen");
-    lor.set("Ent", "Treebeard");
-    lor._findSlot("Hobbit");
-    lor._findSlot("Hobbit");
-    lor._findSlot("Wizard");
-    lor._findSlot("Human");
-    lor._findSlot("Elf");
-    lor._findSlot("Maiar");
-    lor._findSlot("Maiar");
-    lor._findSlot("RingBearer");
-    lor._findSlot("LadyOfLight");
-    lor._findSlot("HalfEleven");
-    lor._findSlot("Ent");
-    console.log(lor);
+    // lor.set("Maiar", "The Necromancer");
+    // lor.set("Maiar", "Sauron");
+    // lor.set("RingBearer", "Gollum");
+    // lor.set("LadyOfLight", "Galadriel");
+    // lor.set("HalfElven", "Arwen");
+    // lor.set("Ent", "Treebeard");
+    console.log(lor._findSlot("Maiar")); //0
+    console.log(lor._findSlot("Hobbit")); //5
+    console.log(lor); //capacity 8
 }
-main();
+// main();
+const WhatDoesThisDo = function () {
+    let str1 = 'Hello World.';
+    let str2 = 'Hello World.';
+    let map1 = new HashMap();
+    map1.set(str1, 10);
+    map1.set(str2, 20);
+    let map2 = new HashMap();
+    let str3 = str1;
+    let str4 = str2;
+    map2.set(str3, 20);
+    map2.set(str4, 10);
 
-module.exports = HashMap;
+    console.log(map1.get(str1));
+    console.log(map2.get(str3));
+}
+WhatDoesThisDo();
+
+// map1 will display 20 because the value was overwritten by: map2.set(str3,20);
+// map2 will display 10 because the value was overwritten by: map2.set(str4,10);
+
