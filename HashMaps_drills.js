@@ -128,11 +128,48 @@ function deleteDuplicates(string) {
 }
 
 // 5. Any permutation a palindrome 
-function Palindrome(string) {
-    const checkPalindrome = new HashMap();
-  
+function isItPalindrome(string) {
+    let oddChar = false;
+    let hm = new Map(); //JS built in HashMap
+    let value;
+    for (let i = 0; i < string.length; i++) {
+        if (hm.has(string[i])) {
+            let value = hm.get(string[i]);
+            hm.set(string[i], (value + 1));
+        }
+        else {
+            hm.set(string[i], 1);
+        }
+    }
+    const iterator = hm.values(); //just getting the values
+    if (Math.floor(iterator.next().value) % 2 !== 0) {
+        oddChar = true;
+    }
+    if (oddChar) return false;
+    return true;
+}
 
-  }
+//here is another version
+const palindromic = (word) => {
+    const unpaired = new Map();
+    for (let character of word) {
+        if (unpaired.has(character)) {
+            unpaired.delete(character);
+        } else {
+            unpaired.set(character, true);
+        }
+    }
+    return unpaired.size <= 1;
+}
+
+function mainPalindromString() {
+    //console.log(PermutationString('madam'));
+    console.log(PermutationString('cllic'));
+    //console.log(PermutationString('aaxxis'));
+    //console.log(PermutationString('caabl'));
+}
+
+mainPalindromString();
 
 function main() {
     let lor = new HashMap();
@@ -154,3 +191,45 @@ function main() {
     console.log(deleteDuplicates("google"))
 }
 main();
+
+function _sortword(word) {
+    //Helper function: sort a word into some form of canonical order.
+    //The exact order is insignificant and need not be lexicographical,
+    //as long as it is utterly consistent: any two anagrams of the same
+    //letter sequence must return the same string.
+    return word.split('').sort().join('')
+}
+function group_into_anagrams(words) {
+    let anagrams = new Map(), ret = [];
+    for (let word of words) {
+        let key = _sortword(word); //east 
+        if (anagrams.has(key)) {
+            anagrams.get(key).push(word);
+        }
+        else {
+            ret.push(anagrams.set(key, [word]));
+        }
+    }
+    return ret;
+}
+
+//You can use Map() class
+
+const sort = (word) => word.split('').sort().join('');
+
+const anagrams = (words) => {
+    const groups = new Map();
+    words.forEach(word => {
+        const sorted = sort(word);
+        const group = groups.get(sorted) || [];
+        groups.set(sorted, [...group, word]);
+    })
+    return Array.from(groups.values());
+};
+
+console.log(anagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+/* should output:
+[ [ 'east', 'teas', 'eats' ],
+  [ 'cars', 'arcs' ],
+  [ 'acre', 'race' ] ]
+*/
